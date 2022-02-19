@@ -1,0 +1,667 @@
+[student@workstation ~]$ lab-configure
+
+This script configures the connection parameters to access the OpenShift cluster for your lab scripts
+
+ · Enter the API Endpoint: https://api.na46.prod.nextcle.com:6443
+ · Enter the Username: adbzrx
+ · Enter the Password: 1d4b0137e6b24e3c8d3c
+ · Enter the GitHub Account Name: lilyjing2
+ · Enter the Quay.io Account Name: lily_jing
+
+You entered:
+ · API Endpoint:			https://api.na46.prod.nextcle.com:6443
+ · Username:				adbzrx
+ · Password:				1d4b0137e6b24e3c8d3c
+ · GitHub Account Name:			lilyjing2
+ · Quay.io Account Name:		lily_jing
+
+Generated config:
+ · API Endpoint:			https://api.na46.prod.nextcle.com:6443
+ · Wildcard Domain:			apps.na46.prod.nextcle.com
+ · Nexus Server Host:			nexus-common.apps.na46.prod.nextcle.com
+ · Username:				adbzrx
+ · Password:				1d4b0137e6b24e3c8d3c
+ · GitHub Account Name:			lilyjing2
+ · Quay.io Account Name:		lily_jing
+
+Verifying your API Endpoint...
+
+Verifying your Nexus host...
+
+Verifying your OpenShift developer user credentials...
+
+Verifying your GitHub account name...
+
+Verifying your Quay.io account name...
+
+Verifying your cluster configuration...
+
+Saving your lab configuration file...
+
+Saving your Maven settings file...
+
+All fine, lab config saved. You can now proceed with your exercises.
+
+If you need to modify the configuration, rerun this script or directly modify the values in /usr/local/etc/ocp4.config.
+
+
+
+
+Clone this course's sample applications from your personal GitHub account to your
+workstation machine. Perform the following steps:
+5.1. Run the following command to clone this course's sample applications repository.
+Replace yourgituser with the name of your personal GitHub account.
+[student@workstation ~]$ git clone https://github.com/_yourgituser_/DO180-apps
+Cloning into 'DO180-apps'...
+...output omitted...
+5.2. Verify that /home/user/DO180-apps is a Git repository.
+[student@workstation ~]$ cd DO180-apps
+[student@workstation DO180-apps]$ git status
+# On branch master
+nothing to commit, working directory clean
+5.3. Create a new branch to test your new personal access token.
+[student@workstation DO180-apps]$ git checkout -b testbranch
+Switched to a new branch `testbranch`
+5.4. Make a change to the TEST file and then commit it to Git.
+[student@workstation DO180-apps]$ echo "DO180" > TEST
+[student@workstation DO180-apps]$ git add .
+[student@workstation DO180-apps]$ git commit -am "DO180"
+...output omitted...
+5.5. Push the changes to your recently created testing branch.
+[student@workstation DO180-apps]$ git push --set-upstream origin testbranch
+Username for `https://github.com`:
+Password for `https://_yourgituser_@github.com`:
+...output omitted...
+Enter your GitHub username
+Enter your personal access token
+5.6. Make other change to a text file, commit it and push it. You will notice you are no
+longer asked to put your user and password. This is because the git config
+command you ran in step 1.7.
+[student@workstation DO180-apps]$ echo "OCP4.6" > TEST
+[student@workstation DO180-apps]$ git add .
+[student@workstation DO180-apps]$ git commit -am "OCP4.6"
+[student@workstation DO180-apps]$ git push
+...output omitted...
+5.7. Verify that /home/user/DO180-apps contains this course's sample applications,
+and change back to the user's home folder.
+DO295-OCP4.6-en-2-20211213 27
+Chapter 1 | Introducing Container Technology
+[student@workstation DO180-apps]$ head README.md
+# DO180-apps
+...output omitted...
+[student@workstation DO180-apps]$ cd ~
+[student@workstation ~]$
+Now that you have a local clone of the
+
+
+[student@workstation ~]$ lab container-create start
+
+Setting up workstation for the Guided Exercise: Creating a MySQL database instance
+
+ · Checking podman configuration...............................  SUCCESS
+ · Creating create_table.txt file..............................  SUCCESS
+[student@workstation ~]$ lab manage-lifecycle start
+
+Setting up workstation for the Guided Excercise: Managing a MySQL Container
+
+ · Checking podman configuration...............................  SUCCESS
+Exercise is already setup.
+[student@workstation ~]$ lab manage-storage start
+
+Setting up workstation for the Guided Exercise: Persisting a MySQL Database
+
+ · Checking podman configuration...............................  SUCCESS
+ · Check if the directory used by lab is not created...........  FAIL
+Please remove the /home/student/local/mysql folder before starting this exercise.
+[student@workstation ~]$ lab manage-storage start
+
+Setting up workstation for the Guided Exercise: Persisting a MySQL Database
+
+ · Checking podman configuration...............................  SUCCESS
+ · Check if the directory used by lab is not created...........  SUCCESS
+[student@workstation ~]$ lab manage-networking start
+
+Setting up workstation for the Guided Exercise: Loading the Database
+
+ · Checking podman configuration...............................  SUCCESS
+ · Creating a host directory for the database container:
+   · Adding fcontext policy for /home/student/local/mysql......  SUCCESS
+   · Creating the /home/student/local/mysql directory..........  SUCCESS
+   · Apply fcontext policy to /home/student/local/mysql........  SUCCESS
+   · Change owner of the /home/student/local/mysql to the mysql  SUCCESS
+ · Downloading starter project.................................  SUCCESS
+ · Downloading solution project................................  SUCCESS
+
+Setup successful. Please proceed with the exercise.
+
+
+[student@workstation ~]$ lab manage-review start
+
+Setting up workstation for the Lab: Managing Containers
+
+ · Checking podman configuration...............................  SUCCESS
+ · Check that /home/student/local/mysql does not exist.........  FAIL
+Please remove the directory: /home/student/local/mysql
+ · Downloading starter project.................................  SUCCESS
+ · Downloading solution project................................  SUCCESS
+
+Setup successful. Please proceed with the exercise.
+
+[student@workstation ~]$ mkdir /home/student/local/mysql
+mkdir: cannot create directory ‘/home/student/local/mysql’: File exists
+[student@workstation ~]$ mkdir  -p /home/student/local/mysql/
+[student@workstation ~]$ lab manage-review start
+
+Setting up workstation for the Lab: Managing Containers
+
+ · Checking podman configuration...............................  SUCCESS
+ · Check that /home/student/local/mysql does not exist.........  FAIL
+Please remove the directory: /home/student/local/mysql
+Exercise is already setup.
+[student@workstation ~]$ lab manage-review start
+
+Setting up workstation for the Lab: Managing Containers
+
+ · Checking podman configuration...............................  SUCCESS
+ · Check that /home/student/local/mysql does not exist.........  SUCCESS
+Exercise is already setup.
+[student@workstation ~]$ lab image-operations start
+
+Setting up workstation for the GE: Creating a Custom Apache Container Image
+
+ · Checking podman configuration...............................  SUCCESS
+[student@workstation ~]$ lab image-review start
+
+Setting up workstation for the Lab: Managing Images
+
+ · Checking podman configuration...............................  SUCCESS
+[student@workstation ~]$ lab dockerfile-create start
+
+Setting up workstation for the Guided Exercise: Building a basic Apache Container Image
+
+ · Checking podman configuration...............................  SUCCESS
+Exercise is already setup.
+[student@workstation ~]$ lab dockerfile-review start
+
+Setting up workstation for the Lab: Creating Custom Container Images
+
+ · Checking podman configuration...............................  SUCCESS
+ · Checking if the container exists or is running..............  SUCCESS
+ · Downloading starter project.................................  SUCCESS
+ · Downloading solution project................................  SUCCESS
+
+Setup successful. Please proceed with the exercise.
+
+[student@workstation ~]$ lab openshift-resources start
+
+Setting up workstation for the Guided Exercise: Deploying a Database Server on OpenShift
+
+ Verifying the OpenShift cluster is running:
+ · Log in on OpenShift.........................................  SUCCESS
+ · Check master node na46-jffdq-master-0 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-1 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-2 is ready..............  SUCCESS
+ · Check the internal registry is up and running...............  SUCCESS
+ · Ensuring the 'adbzrx-mysql-openshift' project is absent.....  SUCCESS
+[student@workstation ~]$ lab openshift-routes start
+
+Setting up workstation for the Guided Exercise: Exposing a Service as a Route
+
+ Verifying the OpenShift cluster is running:
+ · Log in on OpenShift.........................................  SUCCESS
+ · Check master node na46-jffdq-master-0 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-1 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-2 is ready..............  SUCCESS
+ · Check the internal registry is up and running...............  SUCCESS
+ · Ensuring the 'adbzrx-route' project does not exist..........  SUCCESS
+[student@workstation ~]$ lab openshift-s2i start
+
+Setting up workstation for the Guided Excercise: Creating a Containerized Application with Source-to-Image
+
+ · Installing the tree command.................................  SUCCESS
+ Checking local clone of the applications repository:
+ · Folder '/home/student/DO180-apps' is a git repo.............  SUCCESS
+ · Git repo '/home/student/DO180-apps' has no pending changes..  SUCCESS
+ Verifying the OpenShift cluster is running:
+ · Log in on OpenShift.........................................  SUCCESS
+ · Check master node na46-jffdq-master-0 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-1 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-2 is ready..............  SUCCESS
+ · Check the internal registry is up and running...............  SUCCESS
+ · Ensuring the 'adbzrx-s2i' project does not exist............  SUCCESS
+[student@workstation ~]$ lab openshift-review start
+
+Setting up workstation for the Lab: Deploying Containerized Applications on OpenShift
+
+ Verifying the OpenShift cluster is running:
+ · Log in on OpenShift.........................................  SUCCESS
+ · Check master node na46-jffdq-master-0 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-1 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-2 is ready..............  SUCCESS
+ · Check the internal registry is up and running...............  SUCCESS
+ · Ensuring the 'adbzrx-ocp' project does not exist............  SUCCESS
+
+[student@workstation ~]$ lab deploy-image start
+
+Checking prerequisites for GE: Managing an Application with the Web Console
+
+ Verifying the OpenShift cluster is running:
+ · Log in on OpenShift.........................................  SUCCESS
+ · Check master node na46-jffdq-master-0 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-1 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-2 is ready..............  SUCCESS
+ · Check the internal registry is up and running...............  SUCCESS
+ Checking required artifacts:
+ · Image 'redhattraining/php-hello-dockerfile' is available....  SUCCESS
+
+Overall start status...........................................  SUCCESS
+
+[student@workstation ~]$ lab build-template start
+
+Checking prerequisites for GE: Managing an Application with the CLI
+
+ Checking local clone of the applications repository:
+ · Folder '/home/student/DO288-apps' is a git repo.............  SUCCESS
+ · Git repo '/home/student/DO288-apps' has no pending changes..  FAIL
+
+You do not seem to have a local clone of the applications repository.
+Perform the first guided exercise: "Configuring Your Classroom Environment" before starting this exercise.
+
+Cannot continue due to the previous errors.....................  FAIL
+
+[student@workstation DO288-apps]$ lab container-build start
+
+Checking prerequisites for Guided Exercise: Building Container Images
+
+ Checking local clone of the applications repository:
+ · Folder '/home/student/DO288-apps' is a git repo.............  SUCCESS
+ · Git repo '/home/student/DO288-apps' has no pending changes..  SUCCESS
+ Verifying the OpenShift cluster is running:
+ · Log in on OpenShift.........................................  SUCCESS
+ · Check master node na46-jffdq-master-0 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-1 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-2 is ready..............  SUCCESS
+ · Check the internal registry is up and running...............  SUCCESS
+ Checking required artifacts:
+ · Image 'redhattraining/httpd-parent' is available............  SUCCESS
+ Checking for conflicts with existing OpenShift projects:
+ · Project 'adbzrx-container-build' is absent..................  SUCCESS
+
+Setting up the classroom for Guided Exercise: Building Container Images
+
+ · Download exercise files.....................................  SUCCESS
+ · Download solution files.....................................  SUCCESS
+
+Overall start status...........................................  SUCCESS
+
+[student@workstation DO288-apps]$ lab app-config start
+
+Checking prerequisites for Guided Exercise: Injecting Configuration Data into an Application
+
+ Checking local clone of the applications repository:
+ · Folder '/home/student/DO288-apps' is a git repo.............  SUCCESS
+ · Git repo '/home/student/DO288-apps' has no pending changes..  SUCCESS
+ Verifying the OpenShift cluster is running:
+ · Log in on OpenShift.........................................  SUCCESS
+ · Check master node na46-jffdq-master-0 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-1 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-2 is ready..............  SUCCESS
+ · Check the internal registry is up and running...............  SUCCESS
+ Checking required artifacts:
+ · Project 'app-config' exists in student's GitHub fork........  SUCCESS
+ · Module 'nodejs' exists in classroom's Nexus.................  SUCCESS
+ Checking for conflicts with existing OpenShift projects:
+ · Project 'adbzrx-app-config' is absent.......................  SUCCESS
+
+Setting up the classroom for Guided Exercise: Injecting Configuration Data into an Application
+
+ · Download exercise files.....................................  SUCCESS
+ · Download solution files.....................................  SUCCESS
+
+Overall start status...........................................  SUCCESS
+
+[student@workstation DO288-apps]$ lab design-container start
+
+Checking prerequisites for Lab: Designing Containerized Applications for OpenShift
+
+ Checking local clone of the applications repository:
+ · Folder '/home/student/DO288-apps' is a git repo.............  SUCCESS
+ · Git repo '/home/student/DO288-apps' has no pending changes..  SUCCESS
+ Verifying the OpenShift cluster is running:
+ · Log in on OpenShift.........................................  SUCCESS
+ · Check master node na46-jffdq-master-0 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-1 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-2 is ready..............  SUCCESS
+ · Check the internal registry is up and running...............  SUCCESS
+ Checking required artifacts:
+ · Project 'hello-java' exists in student's GitHub fork........  SUCCESS
+ · Check if file 'hello-java.jar' is available.................  SUCCESS
+ Checking for conflicts with existing OpenShift projects:
+ · Project 'adbzrx-design-container' is absent.................  SUCCESS
+
+Setting up the classroom for Lab: Designing Containerized Applications for OpenShift
+
+ · Download exercise files.....................................  SUCCESS
+ · Download solution files.....................................  SUCCESS
+
+Overall start status...........................................  SUCCESS
+
+[student@workstation DO288-apps]$ lab external-registry start
+
+Checking prerequisites for GE: Using an External Registry
+
+ Verifying the OpenShift cluster is running:
+ · Log in on OpenShift.........................................  SUCCESS
+ · Check master node na46-jffdq-master-0 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-1 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-2 is ready..............  SUCCESS
+ · Check the internal registry is up and running...............  SUCCESS
+ Checking required artifacts:
+ · OCI container image 'ubi-sleep' is available................  SUCCESS
+ Checking for conflicts with existing OpenShift projects:
+ · Project 'adbzrx-external-registry' is absent................  SUCCESS
+ Checking for conflicts with existing local containers:
+ · Container 'sleep' is absent.................................  SUCCESS
+
+Setting up the classroom for GE: Using an External Registry
+
+ · Skip download of exercise and solution files................  SUCCESS
+ · Download OCI container image folder 'ubi-sleep'.............  SUCCESS
+
+Overall start status...........................................  SUCCESS
+
+[student@workstation DO288-apps]$ lab expose-registry start
+
+Checking prerequisites for GE: Using the OpenShift Registry
+
+ Verifying the OpenShift cluster is running:
+ · Log in on OpenShift.........................................  SUCCESS
+ · Check master node na46-jffdq-master-0 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-1 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-2 is ready..............  SUCCESS
+ · Check the internal registry is up and running...............  SUCCESS
+ Checking required artifacts:
+ · OCI container image 'ubi-info' is available.................  SUCCESS
+ Checking for conflicts with existing OpenShift projects:
+ · Project 'adbzrx-common' is absent...........................  SUCCESS
+ Checking for conflicts with existing local containers:
+ · Container 'info' is absent..................................  SUCCESS
+
+Setting up the classroom for GE: Using the OpenShift Registry
+
+ · Download exercise files.....................................  SUCCESS
+ · Download solution files.....................................  SUCCESS
+ · Download OCI container image folder 'ubi-info'..............  SUCCESS
+
+Overall start status...........................................  SUCCESS
+
+[student@workstation DO288-apps]$ lab image-stream start
+
+Checking prerequisites for GE: Creating an Image Stream
+
+ Verifying the OpenShift cluster is running:
+ · Log in on OpenShift.........................................  FAIL
+
+Cannot login to OpenShift using your URL and developer credentials.
+[student@workstation DO288-apps]$ lab expose-image start
+
+Checking prerequisites for Lab: Publishing Enterprise Container Images
+
+ Verifying the OpenShift cluster is running:
+ · Log in on OpenShift.........................................  SUCCESS
+ · Check master node na46-jffdq-master-0 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-1 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-2 is ready..............  SUCCESS
+ · Check the internal registry is up and running...............  SUCCESS
+ Checking required artifacts:
+ · OCI container image 'php-info' is available.................  SUCCESS
+ Checking for conflicts with existing OpenShift projects:
+ · Project 'adbzrx-expose-image' is absent.....................  SUCCESS
+ · Project 'adbzrx-common' is absent...........................  SUCCESS
+
+Setting up the classroom for Lab: Publishing Enterprise Container Images
+
+ · Download exercise files.....................................  SUCCESS
+ · Download OCI container image folder 'php-info'..............  SUCCESS
+
+Overall start status...........................................  SUCCESS
+
+[student@workstation DO288-apps]$ lab manage-builds start
+
+Checking prerequisites for GE: Managing Application Builds
+
+ Checking local clone of the applications repository:
+ · Folder '/home/student/DO288-apps' is a git repo.............  SUCCESS
+ · Git repo '/home/student/DO288-apps' has no pending changes..  SUCCESS
+ Verifying the OpenShift cluster is running:
+ · Log in on OpenShift.........................................  SUCCESS
+ · Check master node na46-jffdq-master-0 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-1 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-2 is ready..............  SUCCESS
+ · Check the internal registry is up and running...............  SUCCESS
+ Checking required artifacts:
+ · Module 'java' exists in classroom's Nexus...................  SUCCESS
+ Checking for conflicts with existing OpenShift projects:
+ · Project 'adbzrx-manage-builds' is absent....................  FAIL
+
+Setting up the classroom for GE: Managing Application Builds
+
+ · Skip download of exercise and solution files................  SUCCESS
+
+Overall start status...........................................  FAIL
+
+[student@workstation DO288-apps]$ lab post-commit start
+
+Checking prerequisites for GE: Implementing Post-Commit Build Hooks
+
+ Verifying the OpenShift cluster is running:
+ · Log in on OpenShift.........................................  SUCCESS
+ · Check master node na46-jffdq-master-0 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-1 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-2 is ready..............  SUCCESS
+ · Check the internal registry is up and running...............  SUCCESS
+ Checking for conflicts with existing OpenShift projects:
+ · Project 'adbzrx-post-commit' is absent......................  SUCCESS
+
+Setting up the classroom for GE: Implementing Post-Commit Build Hooks
+
+ Prepare the Guided Exercise
+ · Download exercise files.....................................  SUCCESS
+ · Create the adbzrx-post-commit project.......................  SUCCESS
+ · Deploy and configure the builds-for-managers application....  SUCCESS
+ · Expose the builds-for-managers application..................  SUCCESS
+
+Overall start status...........................................  SUCCESS
+
+[student@workstation DO288-apps]$ lab build-app start
+
+Checking prerequisites for Lab: Building applications
+
+ Verifying the OpenShift cluster is running:
+ · Log in on OpenShift.........................................  SUCCESS
+ · Check master node na46-jffdq-master-0 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-1 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-2 is ready..............  SUCCESS
+ · Check the internal registry is up and running...............  SUCCESS
+ Checking required artifacts:
+ · Module 'nodejs' exists in classroom's Nexus.................  SUCCESS
+ · Project 'build-app' exists in student's GitHub fork.........  SUCCESS
+ Checking for conflicts with existing OpenShift projects:
+ · Project 'adbzrx-build-app' is absent........................  SUCCESS
+
+Setting up the classroom for Lab: Building applications
+
+ · Download exercise files.....................................  SUCCESS
+
+Overall start status...........................................  SUCCESS
+
+[student@workstation DO288-apps]$ lab s2i-scripts start
+
+Checking prerequisites for Guided Exercise: Customizing S2I Builds
+
+ Checking local clone of the applications repository:
+ · Folder '/home/student/DO288-apps' is a git repo.............  SUCCESS
+ · Git repo '/home/student/DO288-apps' has no pending changes..  SUCCESS
+ Verifying the OpenShift cluster is running:
+ · Log in on OpenShift.........................................  SUCCESS
+ · Check master node na46-jffdq-master-0 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-1 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-2 is ready..............  SUCCESS
+ · Check the internal registry is up and running...............  SUCCESS
+ Checking for conflicts with existing OpenShift projects:
+ · Project 'adbzrx-s2i-scripts' is absent......................  FAIL
+ Checking for conflicts with existing local containers:
+ · Container 'test' is absent..................................  SUCCESS
+
+Overall start status...........................................  FAIL
+
+[student@workstation DO288-apps]$ lab s2i-scripts start
+
+Checking prerequisites for Guided Exercise: Customizing S2I Builds
+
+ Checking local clone of the applications repository:
+ · Folder '/home/student/DO288-apps' is a git repo.............  SUCCESS
+ · Git repo '/home/student/DO288-apps' has no pending changes..  SUCCESS
+ Verifying the OpenShift cluster is running:
+ · Log in on OpenShift.........................................  SUCCESS
+ · Check master node na46-jffdq-master-0 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-1 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-2 is ready..............  SUCCESS
+ · Check the internal registry is up and running...............  SUCCESS
+ Checking for conflicts with existing OpenShift projects:
+ · Project 'adbzrx-s2i-scripts' is absent......................  FAIL
+ Checking for conflicts with existing local containers:
+ · Container 'test' is absent..................................  SUCCESS
+
+Overall start status...........................................  FAIL
+
+[student@workstation DO288-apps]$ lab custom-s2i start
+
+Checking prerequisites for Lab: Customizing Source to Image Builds
+
+ Checking local clone of the applications repository:
+ · Folder '/home/student/DO288-apps' is a git repo.............  SUCCESS
+ · Git repo '/home/student/DO288-apps' has no pending changes..  SUCCESS
+ Verifying the OpenShift cluster is running:
+ · Log in on OpenShift.........................................  SUCCESS
+ · Check master node na46-jffdq-master-0 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-1 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-2 is ready..............  SUCCESS
+ · Check the internal registry is up and running...............  SUCCESS
+ Checking for conflicts with existing OpenShift projects:
+ · Project 'adbzrx-custom-s2i' is absent.......................  SUCCESS
+ Checking for conflicts with existing local containers:
+ · Container 'info' is absent..................................  SUCCESS
+ · Project 'go-hello' exists in student's GitHub fork..........  SUCCESS
+
+Setting up the classroom for Lab: Customizing Source to Image Builds
+
+ · Download exercise files.....................................  SUCCESS
+ · Download solution files.....................................  SUCCESS
+
+Overall start status...........................................  SUCCESS
+
+[student@workstation DO288-apps]$ lab multicontainer-helm start
+
+Checking prerequisites for GE: Creating a Helm Chart
+
+ Verifying the OpenShift cluster is running:
+ · Log in on OpenShift.........................................  SUCCESS
+ · Check master node na46-jffdq-master-0 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-1 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-2 is ready..............  SUCCESS
+ · Check the internal registry is up and running...............  SUCCESS
+ Checking required artifacts:
+ Checking for conflicts with existing OpenShift projects:
+ · Project 'adbzrx-multicontainer-helm' is absent..............  SUCCESS
+
+Setting up the classroom for GE: Creating a Helm Chart
+
+ · Download exercise files.....................................  SUCCESS
+ · Download solution files.....................................  SUCCESS
+
+Overall start status...........................................  SUCCESS
+
+[student@workstation DO288-apps]$ lab multicontainer-kustomize start
+
+Checking prerequisites for GE: Customizing Deployments with Kustomize
+
+ Verifying the OpenShift cluster is running:
+ · Log in on OpenShift.........................................  SUCCESS
+ · Check master node na46-jffdq-master-0 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-1 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-2 is ready..............  SUCCESS
+ · Check the internal registry is up and running...............  SUCCESS
+ Checking required artifacts:
+ Checking for conflicts with existing OpenShift projects:
+ · Project 'adbzrx-multicontainer-kustomize' is absent.........  FAIL
+
+Setting up the classroom for GE: Customizing Deployments with Kustomize
+
+ · Skip download of exercise and solution files................  SUCCESS
+
+Overall start status...........................................  FAIL
+
+[student@workstation DO288-apps]$ lab multicontainer-review start
+
+Checking prerequisites for Lab: Deploying Multi-container Applications
+
+ Verifying the OpenShift cluster is running:
+ · Log in on OpenShift.........................................  SUCCESS
+ · Check master node na46-jffdq-master-0 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-1 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-2 is ready..............  SUCCESS
+ · Check the internal registry is up and running...............  SUCCESS
+ Checking required artifacts:
+ Checking for conflicts with existing OpenShift projects:
+ · Project 'adbzrx-multicontainer-review' is absent............  SUCCESS
+
+Setting up the classroom for Lab: Deploying Multi-container Applications
+
+ · Skip download of exercise and solution files................  SUCCESS
+
+Overall start status...........................................  SUCCESS
+
+[student@workstation DO288-apps]$ lab manage-deploy start
+
+Checking prerequisites for Lab: Managing Application Deployments
+
+ Checking local clone of the applications repository:
+ · Folder '/home/student/DO288-apps' is a git repo.............  SUCCESS
+ · Git repo '/home/student/DO288-apps' has no pending changes..  SUCCESS
+ Verifying the OpenShift cluster is running:
+ · Log in on OpenShift.........................................  SUCCESS
+ · Check master node na46-jffdq-master-0 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-1 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-2 is ready..............  SUCCESS
+ · Check the internal registry is up and running...............  SUCCESS
+ Checking for conflicts with existing OpenShift projects:
+ · Project 'adbzrx-manage-deploy' is absent....................  SUCCESS
+ · Project 'php-scale' exists in student's GitHub fork.........  SUCCESS
+
+Overall start status...........................................  SUCCESS
+
+[student@workstation DO288-apps]$ lab todo-migrate start
+
+Checking prerequisites for Lab: Building Applications for OpenShift
+
+ Checking local clone of the applications repository:
+ · Folder '/home/student/DO288-apps' is a git repo.............  SUCCESS
+ · Git repo '/home/student/DO288-apps' has no pending changes..  SUCCESS
+ Verifying the OpenShift cluster is running:
+ · Log in on OpenShift.........................................  SUCCESS
+ · Check master node na46-jffdq-master-0 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-1 is ready..............  SUCCESS
+ · Check master node na46-jffdq-master-2 is ready..............  SUCCESS
+ · Check the internal registry is up and running...............  SUCCESS
+ Checking required artifacts:
+ · Project 'todo-api' exists in student's GitHub fork..........  SUCCESS
+ Checking for conflicts with existing OpenShift projects:
+ · Project 'adbzrx-todo-migrate' is absent.....................  SUCCESS
+
+Setting up the classroom for Lab: Building Applications for OpenShift
+
+ · Download exercise files.....................................  SUCCESS
+ · Download solution files.....................................  SUCCESS
+
+Overall start status...........................................  SUCCESS
